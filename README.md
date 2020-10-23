@@ -1,1 +1,3 @@
 # harperdb-sdk-java
+
+## Authorization
