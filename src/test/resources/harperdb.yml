@@ -1,0 +1,7 @@
+server:
+  node1:
+    host: 'localhost'
+    port: 9956
+  node2:
+    host: 'localhost'
+    port: 9956
