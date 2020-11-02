@@ -7,13 +7,13 @@ import java.util.Base64;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class BasicAuthorizationTest {
+class BasicAuthTest {
 
     @Test
     void basicAuthString() {
         String expected = "Basic " + Base64.getUrlEncoder().encodeToString("user:passwd".getBytes(StandardCharsets.UTF_8));
 
-        String authString = AuthFactory.basic()
+        String authString = Authorization.basic()
                 .withUserName("user")
                 .withPassword("passwd")
                 .getAuthString();
@@ -24,7 +24,7 @@ class BasicAuthorizationTest {
     void emptyCredentials() {
         String expected = "Basic " + Base64.getUrlEncoder().encodeToString(":".getBytes(StandardCharsets.UTF_8));
 
-        String authString = AuthFactory.basic()
+        String authString = Authorization.basic()
                 .getAuthString();
         assertEquals(expected, authString);
     }

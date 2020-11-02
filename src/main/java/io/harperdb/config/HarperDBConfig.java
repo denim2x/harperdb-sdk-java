@@ -63,8 +63,8 @@ public class HarperDBConfig {
 
         List<Configuration> sourcesList = new ArrayList<>();
 
-        public Builder sources(Configuration source1, Configuration source2) {
-            sourcesList.addAll(Arrays.asList(source1, source2));
+        public Builder sources(Configuration... sources) {
+            sourcesList.addAll(Arrays.asList(sources));
             return this;
         }
 

@@ -1,7 +1,4 @@
 server:
   node1:
-    host: 'localhost'
-    port: 9956
-  node2:
-    host: '127.0.0.1'
-    port: 9957
+    username: admin
+    password: somePass!

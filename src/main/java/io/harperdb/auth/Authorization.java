@@ -1,7 +1,9 @@
 package io.harperdb.auth;
 
-public interface Authorization {
+public final class Authorization {
 
-    String getAuthString();
+    public static BasicAuth basic() {
+        return new BasicAuth();
+    }
 
 }
