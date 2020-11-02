@@ -1,44 +1,53 @@
 package io.harperdb.config.parser;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import io.harperdb.config.ConfigModel;
-import io.harperdb.config.ConfigParserException;
+import io.harperdb.config.source.ConfigSource;
+import org.yaml.snakeyaml.Yaml;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.nio.file.Paths;
+import java.io.IOException;
+import java.io.Reader;
+import java.util.*;
 
 public class YamlParser implements ConfigParser {
 
-    public static final String HARPERDB_YML = "harperdb.yml";
-    public static final String HARPERDB_YAML = "harperdb.yaml";
-
     @Override
-    public ConfigModel parse() {
-        String config = configYamlExists();
-        return parse(config);
+    public ConfigModel parse(ConfigSource source) {
+        Yaml yaml = new Yaml();
+        Optional<Reader> optionalReader = source.load();
+        ConfigModel configModel = ConfigModel.create();
+        if (optionalReader.isPresent()) {
+            try (Reader reader = optionalReader.get()) {
+                Map<String, Object> yamlMap = yaml.load(reader);
+                Map<String, Object> configMap = new HashMap<>();
+                Stack<String> iterationGuide = new Stack<>();
+                constructConfigMap(iterationGuide, yamlMap, configMap);
+
+                configMap.forEach(configModel::insert);
+            } catch (IOException e) {
+                //TODO log and handle exception
+            }
+        }
+        return configModel;
     }
 
-    private String configYamlExists() {
-        try {
-            URI yml = ClassLoader.getSystemResource(HARPERDB_YML).toURI();
-            URI yaml = ClassLoader.getSystemResource(HARPERDB_YAML).toURI();
-            if (Paths.get(yaml).toFile().exists()) {
-                return HARPERDB_YAML;
-            } else if (Paths.get(yml).toFile().exists()) {
-                return HARPERDB_YML;
+    private void constructConfigMap(Stack<String> iterationGuide, Map<String, Object> yamlMap, Map<String, Object> configMap) {
+        for (Map.Entry<String, Object> entry: yamlMap.entrySet()) {
+            if (!iterationGuide.isEmpty()) {
+                if (isLeaf(entry)) {
+                    configMap.put(iterationGuide.peek()  + "." + entry.getKey(), entry.getValue());
+                } else {
+                    Stack<String> intermediate = new Stack<>();
+                    intermediate.push(iterationGuide.peek() + "." + entry.getKey());
+                    constructConfigMap(intermediate, (Map<String, Object>) entry.getValue(), configMap);
+                }
             } else {
-                throw new ConfigParserException("Configuration not found");
+                iterationGuide.push(entry.getKey());
+                constructConfigMap(iterationGuide, (Map<String, Object>) entry.getValue(), configMap);
             }
-        } catch (URISyntaxException e) {
-            throw new ConfigParserException("Config location URI has an invalid format", e);
         }
     }
 
-    @Override
-    public ConfigModel parse(String path) {
-        ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-        return null;
+    private boolean isLeaf(Map.Entry<String, Object> entry) {
+        return !(entry.getValue() instanceof Map);
     }
 }

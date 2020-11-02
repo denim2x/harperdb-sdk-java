@@ -1,4 +1,6 @@
-package io.harperdb.config;
+package io.harperdb.config.source;
+
+import io.harperdb.config.parser.ConfigParser;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -16,6 +18,7 @@ public class ClasspathConfigSource implements ConfigSource {
     private final String config;
 
     public ClasspathConfigSource(String config) {
+        Objects.requireNonNull(config, "A property configuration is not provided");
         this.config = config;
     }
 
@@ -29,7 +32,7 @@ public class ClasspathConfigSource implements ConfigSource {
                 return Optional.of(Files.newBufferedReader(path));
             }
         } catch (URISyntaxException | IOException e) {
-            //TODO debug level log
+            //TODO Exception handling, debug level log
         }
         return Optional.empty();
     }

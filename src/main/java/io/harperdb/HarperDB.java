@@ -1,19 +1,19 @@
 package io.harperdb;
 
 import io.harperdb.auth.Authorization;
-import io.harperdb.config.HarperConfig;
+import io.harperdb.config.HarperDBConfig;
 
 public class HarperDB {
 
-    private final HarperConfig config;
+    private final HarperDBConfig config;
     private final Authorization auth;
 
-    private HarperDB(HarperConfig config, Authorization auth) {
+    private HarperDB(HarperDBConfig config, Authorization auth) {
         this.config = config;
         this.auth = auth;
     }
 
-    public static HarperDB create(HarperConfig config, Authorization auth) {
+    public static HarperDB create(HarperDBConfig config, Authorization auth) {
         return new HarperDB(config, auth);
     }
 

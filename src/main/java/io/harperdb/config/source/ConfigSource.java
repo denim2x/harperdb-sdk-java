@@ -1,4 +1,4 @@
-package io.harperdb.config;
+package io.harperdb.config.source;
 
 import java.io.Reader;
 import java.util.Optional;

@@ -1,5 +1,6 @@
 package io.harperdb.config;
 
+import io.harperdb.config.source.ClasspathConfigSource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -10,44 +10,21 @@ import java.util.Optional;
  */
 public class ConfigModel {
 
+    private final Map<String, Object> configurations = new HashMap<>();
+
     private ConfigModel() {
     }
-
-    private final Node root = new Node(Empty.create());
 
     public static ConfigModel create() {
         return new ConfigModel();
     }
 
-    public Object put(String property, Object value) {
-        String[] tokens = property.split("\\.");
-        Node current = root;
-        for (int i = 0; i < tokens.length; i++) {
-            if (i == tokens.length - 1) {
-                current.add(tokens[i], value);
-                return value;
-            }
-            current = current.add(tokens[i], Empty.create());
-        }
-        return null;
+    public Object insert(String property, Object value) {
+        return configurations.put(property, value);
     }
 
     public Optional<Object> get(String property) {
-        String[] tokens = property.split("\\.");
-        Node current = root;
-        for (int i = 0; i <= tokens.length; i++) {
-            //If the last token is reached, the value of the property exists
-            if (i == tokens.length) {
-                return Optional.of(current.getValue());
-            }
-            //Try to get the next node in the tree
-            current = current.getChildren().get(tokens[i]);
-            //Break the flow if the next token is not found
-            if (Objects.isNull(current)) {
-                return Optional.empty();
-            }
-        }
-        return Optional.empty();
+        return Optional.ofNullable(configurations.get(property));
     }
 
     public Object get(String property, Object defaultValue) {
@@ -98,40 +75,14 @@ public class ConfigModel {
         return defaultValue;
     }
 
-    static class Node {
-        private final Map<String, Node> children = new HashMap<>();
-        private Object value;
-
-        public Node(Object value) {
-            this.value = value;
-        }
-
-        public Map<String, Node> getChildren() {
-            return children;
-        }
-
-        public Object getValue() {
-            return value;
-        }
-
-        public void setValue(Object value) {
-            this.value = value;
-        }
-
-        public Node add(String token,  Object value) {
-            Node node = children.getOrDefault(token, new Node(value));
-            children.put(token, node);
-            return node;
-        }
+    public ConfigModel merge(ConfigModel other) {
+        Map<String, Object> otherAsMap = other.getAsMap();
+        otherAsMap.forEach(this::insert);
+        return this;
     }
 
-    static final class Empty {
-        private Empty() {
-        }
-
-        static Empty create() {
-            return new Empty();
-        }
+    public Map<String, Object> getAsMap() {
+        return new HashMap<>(configurations);
     }
 
 }
