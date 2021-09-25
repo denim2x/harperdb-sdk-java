@@ -9,14 +9,23 @@ repositories {
     mavenCentral()
 }
 
+tasks.withType(JavaCompile) {
+  options.compilerArgs << "-Xlint:unchecked"
+}
+
 test {
-    useJUnitPlatform()
+    useTestNG()
 }
 
 dependencies {
-    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.11.3'
-    implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.11.3'
-    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.11.3'
+    //implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.11.3'
+    //implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.11.3'
+    implementation group: 'com.alibaba', name: 'fastjson', version: '1.2.78'
+    implementation group: 'com.ibm.icu', name: 'icu4j', version: '68.1'
+    //compile group: 'org.yaml', name: 'snakeyaml', version: '1.27'
 
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter', version: '5.7.0'
+    //testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter', version: '5.7.0'
+    testImplementation 'com.tngtech.jgiven:jgiven-testng:1.1.0'
+    testImplementation 'org.hamcrest:hamcrest:2.2'
+    testCompile 'org.testng:testng:7.4.0'
 }

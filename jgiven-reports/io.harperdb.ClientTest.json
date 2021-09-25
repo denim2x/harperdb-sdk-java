@@ -1,0 +1,871 @@
+{
+  "className": "io.harperdb.ClientTest",
+  "name": "Client",
+  "scenarios": [
+    {
+      "className": "io.harperdb.ClientTest",
+      "testMethodName": "creating_new_HarperDB",
+      "description": "creating new HarperDB",
+      "tagIds": [],
+      "explicitParameters": [],
+      "derivedParameters": [],
+      "casesAsTable": false,
+      "scenarioCases": [
+        {
+          "caseNr": 1,
+          "steps": [
+            {
+              "name": "new instance",
+              "words": [
+                {
+                  "value": "Given",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "new instance"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1860851,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "endpoint() should return",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "endpoint() should return"
+                },
+                {
+                  "value": "http://localhost:9925",
+                  "argumentInfo": {
+                    "argumentName": "expected",
+                    "formattedValue": "‹URI {http://localhost:9925}›"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 181587,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "authorization() should return",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "authorization() should return"
+                },
+                {
+                  "value": "null",
+                  "argumentInfo": {
+                    "argumentName": "expected",
+                    "formattedValue": "‹null›"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 470730,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "timeout() should return",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "timeout() should return"
+                },
+                {
+                  "value": "PT10S",
+                  "argumentInfo": {
+                    "argumentName": "expected",
+                    "formattedValue": "‹Duration {0:00:10}›"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 2556470,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "",
+              "words": [
+                {
+                  "value": "",
+                  "isIntroWord": true
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 483302,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "useEndpoint($) invoked",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "useEndpoint("
+                },
+                {
+                  "value": "http://foobar:1234",
+                  "argumentInfo": {
+                    "argumentName": "endpoint",
+                    "formattedValue": "\"http://foobar:1234\""
+                  }
+                },
+                {
+                  "value": ")invoked"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1191772,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "endpoint() should return",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "endpoint() should return"
+                },
+                {
+                  "value": "http://foobar:1234",
+                  "argumentInfo": {
+                    "argumentName": "expected",
+                    "formattedValue": "‹URI {http://foobar:1234}›"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1091479,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "",
+              "words": [
+                {
+                  "value": "",
+                  "isIntroWord": true
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 61181,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "useEndpoint($) invoked",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "useEndpoint("
+                },
+                {
+                  "value": "null",
+                  "argumentInfo": {
+                    "argumentName": "endpoint",
+                    "formattedValue": "‹null›"
+                  }
+                },
+                {
+                  "value": ")invoked"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 863797,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "endpoint() should return",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "endpoint() should return"
+                },
+                {
+                  "value": "http://foobar:1234",
+                  "argumentInfo": {
+                    "argumentName": "expected",
+                    "formattedValue": "‹URI {http://foobar:1234}›"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 6028699,
+              "comment": "as previous",
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "",
+              "words": [
+                {
+                  "value": "",
+                  "isIntroWord": true
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 94984,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "useEndpoint($) invoked",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "useEndpoint("
+                },
+                {
+                  "value": "http://foobaz:3456",
+                  "argumentInfo": {
+                    "argumentName": "endpoint",
+                    "formattedValue": "‹URI {http://foobaz:3456}›"
+                  }
+                },
+                {
+                  "value": ")invoked"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1436774,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "endpoint() should return",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "endpoint() should return"
+                },
+                {
+                  "value": "http://foobaz:3456",
+                  "argumentInfo": {
+                    "argumentName": "expected",
+                    "formattedValue": "‹URI {http://foobaz:3456}›"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 959899,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "",
+              "words": [
+                {
+                  "value": "",
+                  "isIntroWord": true
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 96940,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "useEndpoint($) invoked",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "useEndpoint("
+                },
+                {
+                  "value": "null",
+                  "argumentInfo": {
+                    "argumentName": "endpoint",
+                    "formattedValue": "‹null›"
+                  }
+                },
+                {
+                  "value": ")invoked"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 970235,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "endpoint() should return",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "endpoint() should return"
+                },
+                {
+                  "value": "http://foobaz:3456",
+                  "argumentInfo": {
+                    "argumentName": "expected",
+                    "formattedValue": "‹URI {http://foobaz:3456}›"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 628012,
+              "comment": "as previous",
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "",
+              "words": [
+                {
+                  "value": "",
+                  "isIntroWord": true
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 100293,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "useEndpoint(host $, port $) invoked",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "useEndpoint(host"
+                },
+                {
+                  "value": "fooqux",
+                  "argumentInfo": {
+                    "argumentName": "host",
+                    "formattedValue": "\"fooqux\""
+                  }
+                },
+                {
+                  "value": ",port"
+                },
+                {
+                  "value": "5678",
+                  "argumentInfo": {
+                    "argumentName": "port",
+                    "formattedValue": "5678"
+                  }
+                },
+                {
+                  "value": ")invoked"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1136736,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "endpoint() should return",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "endpoint() should return"
+                },
+                {
+                  "value": "http://fooqux:5678",
+                  "argumentInfo": {
+                    "argumentName": "expected",
+                    "formattedValue": "‹URI {http://fooqux:5678}›"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1067174,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "",
+              "words": [
+                {
+                  "value": "",
+                  "isIntroWord": true
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 177955,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "endpoint.with($) invoked",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "endpoint.with("
+                },
+                {
+                  "value": "https",
+                  "argumentInfo": {
+                    "argumentName": "scheme",
+                    "formattedValue": "\"https\""
+                  }
+                },
+                {
+                  "value": ")invoked"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1244292,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "endpoint() should return",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "endpoint() should return"
+                },
+                {
+                  "value": "https://fooqux:5678",
+                  "argumentInfo": {
+                    "argumentName": "expected",
+                    "formattedValue": "‹URI {https://fooqux:5678}›"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 817702,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "",
+              "words": [
+                {
+                  "value": "",
+                  "isIntroWord": true
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 114820,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "useEndpoint($) invoked",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "useEndpoint("
+                },
+                {
+                  "value": "",
+                  "argumentInfo": {
+                    "argumentName": "endpoint",
+                    "formattedValue": "\"\""
+                  }
+                },
+                {
+                  "value": ")invoked"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 530515,
+              "comment": "not valid",
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "endpoint() should throw",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "endpoint() should throw"
+                },
+                {
+                  "value": "class java.lang.IllegalStateException",
+                  "argumentInfo": {
+                    "argumentName": "errorClass",
+                    "formattedValue": "‹IllegalStateException›"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1081981,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "",
+              "words": [
+                {
+                  "value": "",
+                  "isIntroWord": true
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 97219,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "withAuthorization($) invoked",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "withAuthorization("
+                },
+                {
+                  "value": "io.harperdb.auth.BasicAuth@3db1dae5",
+                  "argumentInfo": {
+                    "argumentName": "auth",
+                    "formattedValue": "‹BasicAuth {user:passwd}›"
+                  }
+                },
+                {
+                  "value": ")invoked"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 41436831,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "authorization() should return",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "authorization() should return"
+                },
+                {
+                  "value": "io.harperdb.auth.BasicAuth@3db1dae5",
+                  "argumentInfo": {
+                    "argumentName": "expected",
+                    "formattedValue": "‹BasicAuth {user:passwd}›"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1480076,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "",
+              "words": [
+                {
+                  "value": "",
+                  "isIntroWord": true
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 74311,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "withAuthorization($) invoked",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "withAuthorization("
+                },
+                {
+                  "value": "null",
+                  "argumentInfo": {
+                    "argumentName": "auth",
+                    "formattedValue": "‹null›"
+                  }
+                },
+                {
+                  "value": ")invoked"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1815035,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "authorization() should return",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "authorization() should return"
+                },
+                {
+                  "value": "null",
+                  "argumentInfo": {
+                    "argumentName": "expected",
+                    "formattedValue": "‹null›"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1126680,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "",
+              "words": [
+                {
+                  "value": "",
+                  "isIntroWord": true
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 107556,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "withTimeout($) invoked",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "withTimeout("
+                },
+                {
+                  "value": "20",
+                  "argumentInfo": {
+                    "argumentName": "timeout",
+                    "formattedValue": "20"
+                  }
+                },
+                {
+                  "value": ")invoked"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 696177,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "timeout() should return",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "timeout() should return"
+                },
+                {
+                  "value": "PT20S",
+                  "argumentInfo": {
+                    "argumentName": "expected",
+                    "formattedValue": "‹Duration {0:00:20}›"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 935873,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "",
+              "words": [
+                {
+                  "value": "",
+                  "isIntroWord": true
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 135213,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "withTimeout($) invoked",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "withTimeout("
+                },
+                {
+                  "value": "PT30S",
+                  "argumentInfo": {
+                    "argumentName": "timeout",
+                    "formattedValue": "‹Duration {0:00:30}›"
+                  }
+                },
+                {
+                  "value": ")invoked"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1175569,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "timeout() should return",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "timeout() should return"
+                },
+                {
+                  "value": "PT30S",
+                  "argumentInfo": {
+                    "argumentName": "expected",
+                    "formattedValue": "‹Duration {0:00:30}›"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 3261588,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "",
+              "words": [
+                {
+                  "value": "",
+                  "isIntroWord": true
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 81295,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "withTimeout($) invoked",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "withTimeout("
+                },
+                {
+                  "value": "null",
+                  "argumentInfo": {
+                    "argumentName": "timeout",
+                    "formattedValue": "‹null›"
+                  }
+                },
+                {
+                  "value": ")invoked"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1498515,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "timeout() should return",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "timeout() should return"
+                },
+                {
+                  "value": "PT30S",
+                  "argumentInfo": {
+                    "argumentName": "expected",
+                    "formattedValue": "‹Duration {0:00:30}›"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 504533,
+              "comment": "as previous",
+              "depth": 0,
+              "parentFailed": false
+            }
+          ],
+          "explicitArguments": [],
+          "derivedArguments": [],
+          "status": "SUCCESS",
+          "durationInNanos": 117090860
+        }
+      ],
+      "durationInNanos": 117090860
+    }
+  ],
+  "tagMap": {}
+}

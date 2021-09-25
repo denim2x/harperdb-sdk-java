@@ -1,0 +1,430 @@
+{
+  "className": "io.harperdb.auth.BasicAuthTest",
+  "name": "Basic Auth",
+  "scenarios": [
+    {
+      "className": "io.harperdb.auth.BasicAuthTest",
+      "testMethodName": "creating_new_BasicAuth",
+      "description": "creating new BasicAuth",
+      "tagIds": [],
+      "explicitParameters": [],
+      "derivedParameters": [],
+      "casesAsTable": false,
+      "scenarioCases": [
+        {
+          "caseNr": 1,
+          "steps": [
+            {
+              "name": "new instance",
+              "words": [
+                {
+                  "value": "Given",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "new instance"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 6571505,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "getAuthString() should return",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "getAuthString() should return"
+                },
+                {
+                  "value": ":",
+                  "argumentInfo": {
+                    "argumentName": "credentials",
+                    "formattedValue": "\"Basic «:»\""
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 23346543,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "yield() should return",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "yield() should return"
+                },
+                {
+                  "value": ":",
+                  "argumentInfo": {
+                    "argumentName": "credentials",
+                    "formattedValue": "\"Basic «:»\""
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 2029029,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "",
+              "words": [
+                {
+                  "value": "",
+                  "isIntroWord": true
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 107556,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "withUserName($) invoked",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "withUserName("
+                },
+                {
+                  "value": "user",
+                  "argumentInfo": {
+                    "argumentName": "value",
+                    "formattedValue": "\"user\""
+                  }
+                },
+                {
+                  "value": ")invoked"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1426159,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "getAuthString() should return",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "getAuthString() should return"
+                },
+                {
+                  "value": "user:",
+                  "argumentInfo": {
+                    "argumentName": "credentials",
+                    "formattedValue": "\"Basic «user:»\""
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 53917,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "yield() should return",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "yield() should return"
+                },
+                {
+                  "value": "user:",
+                  "argumentInfo": {
+                    "argumentName": "credentials",
+                    "formattedValue": "\"Basic «user:»\""
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1556622,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "",
+              "words": [
+                {
+                  "value": "",
+                  "isIntroWord": true
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 124597,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "withPassword($) invoked",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "withPassword("
+                },
+                {
+                  "value": "passwd",
+                  "argumentInfo": {
+                    "argumentName": "value",
+                    "formattedValue": "\"passwd\""
+                  }
+                },
+                {
+                  "value": ")invoked"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1144280,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "getAuthString() should return",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "getAuthString() should return"
+                },
+                {
+                  "value": "user:passwd",
+                  "argumentInfo": {
+                    "argumentName": "credentials",
+                    "formattedValue": "\"Basic «user:passwd»\""
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 105879,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "yield() should return",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "yield() should return"
+                },
+                {
+                  "value": "user:passwd",
+                  "argumentInfo": {
+                    "argumentName": "credentials",
+                    "formattedValue": "\"Basic «user:passwd»\""
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 2246096,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "",
+              "words": [
+                {
+                  "value": "",
+                  "isIntroWord": true
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 73752,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "withUserName($) invoked",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "withUserName("
+                },
+                {
+                  "value": "null",
+                  "argumentInfo": {
+                    "argumentName": "value",
+                    "formattedValue": "‹null›"
+                  }
+                },
+                {
+                  "value": ")invoked"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1645460,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "getAuthString() should return",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "getAuthString() should return"
+                },
+                {
+                  "value": "user:passwd",
+                  "argumentInfo": {
+                    "argumentName": "credentials",
+                    "formattedValue": "\"Basic «user:passwd»\""
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 46096,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "yield() should return",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "yield() should return"
+                },
+                {
+                  "value": "user:passwd",
+                  "argumentInfo": {
+                    "argumentName": "credentials",
+                    "formattedValue": "\"Basic «user:passwd»\""
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1601879,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "",
+              "words": [
+                {
+                  "value": "",
+                  "isIntroWord": true
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 78222,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "withPassword($) invoked",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "withPassword("
+                },
+                {
+                  "value": "null",
+                  "argumentInfo": {
+                    "argumentName": "value",
+                    "formattedValue": "‹null›"
+                  }
+                },
+                {
+                  "value": ")invoked"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1502985,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "getAuthString() should return",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "getAuthString() should return"
+                },
+                {
+                  "value": "user:passwd",
+                  "argumentInfo": {
+                    "argumentName": "credentials",
+                    "formattedValue": "\"Basic «user:passwd»\""
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 44698,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "yield() should return",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "yield() should return"
+                },
+                {
+                  "value": "user:passwd",
+                  "argumentInfo": {
+                    "argumentName": "credentials",
+                    "formattedValue": "\"Basic «user:passwd»\""
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1075276,
+              "depth": 0,
+              "parentFailed": false
+            }
+          ],
+          "explicitArguments": [],
+          "derivedArguments": [],
+          "status": "SUCCESS",
+          "durationInNanos": 111684306
+        }
+      ],
+      "durationInNanos": 111684306
+    }
+  ],
+  "tagMap": {}
+}
