@@ -1,14 +1,19 @@
 package io.harperdb.test;
 
 import com.tngtech.jgiven.format.ArgumentFormatter;
-import io.harperdb.util.Utils;
-import java.text.Format;
-import java.text.MessageFormat;
+import static io.harperdb.util.Strings.ANGLE_QUOTES;
 import java.time.Duration;
-import java.util.ArrayList;
-import static java.util.Arrays.stream;
 import static java.util.Objects.isNull;
-import static java.util.Objects.nonNull;
+import static io.harperdb.util.Strings.eval;
+import io.harperdb.util.Mention;
+import static io.harperdb.util.Strings.tell;
+import static io.harperdb.util.Strings.tell;
+import static io.harperdb.util.Strings.tell;
+import static io.harperdb.util.Strings.tell;
+import static io.harperdb.util.Strings.tell;
+import static io.harperdb.util.Strings.tell;
+import static io.harperdb.util.Strings.tell;
+import static io.harperdb.util.Strings.tell;
 
 /**
  *
@@ -18,60 +23,44 @@ public class GenericFormatter implements ArgumentFormatter<Object> {
 
     @Override
     public String format(Object value, String... strings) {
-        if (strings.length > 0) {
-            var args = new ArrayList<String>();
-            stream(strings).skip(1).forEach(args::add);
-            args.add(raw(value));
-            return MessageFormat.format(strings[0], args.toArray());
-        }
-
-        if (value instanceof Class<?>) {
-            return instance(((Class<?>) value).getSimpleName());
+        if (isNull(value)) {
+            return tell(ANGLE_QUOTES, value);
         }
 
         if (value instanceof String) {
-            return string(value);
+            return tell("\"{0}\"", value);
         }
 
+        if (value instanceof Class<?>) {
+            return tell(ANGLE_QUOTES, value);
+        }
+
+        var type = value.getClass();
         String body;
         if (value instanceof Duration) {
-            body = duration((Duration) value);
+            body = format((Duration) value);
         } else {
-            body = Utils.inspect(value);
+            body = tell(value);
         }
 
         if (value instanceof Number) {
             return body;
         }
 
-        if (isNull(value)) {
-            return instance(body);
+        if (type.isAnnotationPresent(Mention.class)) {
+            return body;
         }
 
-        var type = value.getClass().getSimpleName();
-        var format = MessageFormat.format("{0} '{'{1}'}'", type, body);
-        return instance(format);
+        return eval("{0} '{'{1}'}'", tell(type), body).using(ANGLE_QUOTES);
+
     }
 
-    String raw(Object value) {
-        var string = Utils.inspect(value);
-        return nonNull(value) ? string : instance(string);
-    }
-
-    String string(Object value) {
-        return MessageFormat.format("\"{0}\"", value);
-    }
-
-    String instance(Object value) {
-        return MessageFormat.format("\u2039{0}\u203a", value);
-    }
-
-    String duration(Duration value) {
+    String format(Duration value) {
         var hours = value.toHours();
         var mins = value.toMinutesPart();
         var secs = value.toSecondsPart();
 
-        return MessageFormat.format("{0,number,#}:{1,number,00}:{2,number,00}", hours, mins, secs);
+        return eval("{0,number,#}:{1,number,00}:{2,number,00}", hours, mins, secs).toString();
     }
 
 }

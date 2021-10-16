@@ -4,8 +4,8 @@
   "scenarios": [
     {
       "className": "io.harperdb.auth.BasicAuthTest",
-      "testMethodName": "creating_new_BasicAuth",
-      "description": "creating new BasicAuth",
+      "testMethodName": "instantiating",
+      "description": "Instantiating",
       "tagIds": [],
       "explicitParameters": [],
       "derivedParameters": [],
@@ -26,53 +26,77 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 6571505,
+              "durationInNanos": 295568,
               "depth": 0,
               "parentFailed": false
             },
             {
-              "name": "getAuthString() should return",
+              "name": "getAuthString()",
               "words": [
                 {
-                  "value": "Then",
+                  "value": "then",
                   "isIntroWord": true
                 },
                 {
-                  "value": "getAuthString() should return"
+                  "value": "getAuthString()"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 5731455,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "should return",
+              "words": [
+                {
+                  "value": "should return"
                 },
                 {
-                  "value": ":",
+                  "value": "\"Basic «:»\"",
                   "argumentInfo": {
-                    "argumentName": "credentials",
+                    "argumentName": "expected",
                     "formattedValue": "\"Basic «:»\""
                   }
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 23346543,
+              "durationInNanos": 94705,
               "depth": 0,
               "parentFailed": false
             },
             {
-              "name": "yield() should return",
+              "name": "yield()",
               "words": [
                 {
                   "value": "and",
                   "isIntroWord": true
                 },
                 {
-                  "value": "yield() should return"
+                  "value": "yield()"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 575493,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "should return",
+              "words": [
+                {
+                  "value": "should return"
                 },
                 {
-                  "value": ":",
+                  "value": "\"Basic «:»\"",
                   "argumentInfo": {
-                    "argumentName": "credentials",
+                    "argumentName": "expected",
                     "formattedValue": "\"Basic «:»\""
                   }
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 2029029,
+              "durationInNanos": 1421968,
               "depth": 0,
               "parentFailed": false
             },
@@ -85,15 +109,15 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 107556,
+              "durationInNanos": 86882,
               "depth": 0,
               "parentFailed": false
             },
             {
-              "name": "withUserName($) invoked",
+              "name": "withUserName($)",
               "words": [
                 {
-                  "value": "When",
+                  "value": "Then",
                   "isIntroWord": true
                 },
                 {
@@ -107,57 +131,93 @@
                   }
                 },
                 {
-                  "value": ")invoked"
+                  "value": ")"
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 1426159,
+              "durationInNanos": 3042286,
               "depth": 0,
               "parentFailed": false
             },
             {
-              "name": "getAuthString() should return",
+              "name": "should succeed",
               "words": [
                 {
-                  "value": "Then",
-                  "isIntroWord": true
-                },
-                {
-                  "value": "getAuthString() should return"
-                },
-                {
-                  "value": "user:",
-                  "argumentInfo": {
-                    "argumentName": "credentials",
-                    "formattedValue": "\"Basic «user:»\""
-                  }
+                  "value": "should succeed"
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 53917,
+              "durationInNanos": 75150,
               "depth": 0,
               "parentFailed": false
             },
             {
-              "name": "yield() should return",
+              "name": "getAuthString()",
               "words": [
                 {
                   "value": "and",
                   "isIntroWord": true
                 },
                 {
-                  "value": "yield() should return"
+                  "value": "getAuthString()"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 555936,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "should return",
+              "words": [
+                {
+                  "value": "should return"
                 },
                 {
-                  "value": "user:",
+                  "value": "\"Basic «user:»\"",
                   "argumentInfo": {
-                    "argumentName": "credentials",
+                    "argumentName": "expected",
                     "formattedValue": "\"Basic «user:»\""
                   }
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 1556622,
+              "durationInNanos": 70400,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "yield()",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "yield()"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 296406,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "should return",
+              "words": [
+                {
+                  "value": "should return"
+                },
+                {
+                  "value": "\"Basic «user:»\"",
+                  "argumentInfo": {
+                    "argumentName": "expected",
+                    "formattedValue": "\"Basic «user:»\""
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1464432,
               "depth": 0,
               "parentFailed": false
             },
@@ -170,15 +230,15 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 124597,
+              "durationInNanos": 103924,
               "depth": 0,
               "parentFailed": false
             },
             {
-              "name": "withPassword($) invoked",
+              "name": "withPassword($)",
               "words": [
                 {
-                  "value": "When",
+                  "value": "Then",
                   "isIntroWord": true
                 },
                 {
@@ -192,57 +252,93 @@
                   }
                 },
                 {
-                  "value": ")invoked"
+                  "value": ")"
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 1144280,
+              "durationInNanos": 1672000,
               "depth": 0,
               "parentFailed": false
             },
             {
-              "name": "getAuthString() should return",
+              "name": "should succeed",
               "words": [
                 {
-                  "value": "Then",
-                  "isIntroWord": true
-                },
-                {
-                  "value": "getAuthString() should return"
-                },
-                {
-                  "value": "user:passwd",
-                  "argumentInfo": {
-                    "argumentName": "credentials",
-                    "formattedValue": "\"Basic «user:passwd»\""
-                  }
+                  "value": "should succeed"
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 105879,
+              "durationInNanos": 63695,
               "depth": 0,
               "parentFailed": false
             },
             {
-              "name": "yield() should return",
+              "name": "getAuthString()",
               "words": [
                 {
                   "value": "and",
                   "isIntroWord": true
                 },
                 {
-                  "value": "yield() should return"
+                  "value": "getAuthString()"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 402286,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "should return",
+              "words": [
+                {
+                  "value": "should return"
                 },
                 {
-                  "value": "user:passwd",
+                  "value": "\"Basic «user:passwd»\"",
                   "argumentInfo": {
-                    "argumentName": "credentials",
+                    "argumentName": "expected",
                     "formattedValue": "\"Basic «user:passwd»\""
                   }
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 2246096,
+              "durationInNanos": 3900217,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "yield()",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "yield()"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 245003,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "should return",
+              "words": [
+                {
+                  "value": "should return"
+                },
+                {
+                  "value": "\"Basic «user:passwd»\"",
+                  "argumentInfo": {
+                    "argumentName": "expected",
+                    "formattedValue": "\"Basic «user:passwd»\""
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1609702,
               "depth": 0,
               "parentFailed": false
             },
@@ -255,15 +351,15 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 73752,
+              "durationInNanos": 70959,
               "depth": 0,
               "parentFailed": false
             },
             {
-              "name": "withUserName($) invoked",
+              "name": "withUserName($)",
               "words": [
                 {
-                  "value": "When",
+                  "value": "Then",
                   "isIntroWord": true
                 },
                 {
@@ -277,57 +373,93 @@
                   }
                 },
                 {
-                  "value": ")invoked"
+                  "value": ")"
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 1645460,
+              "durationInNanos": 1945778,
               "depth": 0,
               "parentFailed": false
             },
             {
-              "name": "getAuthString() should return",
+              "name": "should succeed",
               "words": [
                 {
-                  "value": "Then",
-                  "isIntroWord": true
-                },
-                {
-                  "value": "getAuthString() should return"
-                },
-                {
-                  "value": "user:passwd",
-                  "argumentInfo": {
-                    "argumentName": "credentials",
-                    "formattedValue": "\"Basic «user:passwd»\""
-                  }
+                  "value": "should succeed"
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 46096,
+              "durationInNanos": 52242,
               "depth": 0,
               "parentFailed": false
             },
             {
-              "name": "yield() should return",
+              "name": "getAuthString()",
               "words": [
                 {
                   "value": "and",
                   "isIntroWord": true
                 },
                 {
-                  "value": "yield() should return"
+                  "value": "getAuthString()"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 342223,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "should return",
+              "words": [
+                {
+                  "value": "should return"
                 },
                 {
-                  "value": "user:passwd",
+                  "value": "\"Basic «user:passwd»\"",
                   "argumentInfo": {
-                    "argumentName": "credentials",
+                    "argumentName": "expected",
                     "formattedValue": "\"Basic «user:passwd»\""
                   }
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 1601879,
+              "durationInNanos": 1107682,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "yield()",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "yield()"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 290260,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "should return",
+              "words": [
+                {
+                  "value": "should return"
+                },
+                {
+                  "value": "\"Basic «user:passwd»\"",
+                  "argumentInfo": {
+                    "argumentName": "expected",
+                    "formattedValue": "\"Basic «user:passwd»\""
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1678426,
               "depth": 0,
               "parentFailed": false
             },
@@ -340,15 +472,15 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 78222,
+              "durationInNanos": 70121,
               "depth": 0,
               "parentFailed": false
             },
             {
-              "name": "withPassword($) invoked",
+              "name": "withPassword($)",
               "words": [
                 {
-                  "value": "When",
+                  "value": "Then",
                   "isIntroWord": true
                 },
                 {
@@ -362,57 +494,93 @@
                   }
                 },
                 {
-                  "value": ")invoked"
+                  "value": ")"
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 1502985,
+              "durationInNanos": 1154337,
               "depth": 0,
               "parentFailed": false
             },
             {
-              "name": "getAuthString() should return",
+              "name": "should succeed",
               "words": [
                 {
-                  "value": "Then",
-                  "isIntroWord": true
-                },
-                {
-                  "value": "getAuthString() should return"
-                },
-                {
-                  "value": "user:passwd",
-                  "argumentInfo": {
-                    "argumentName": "credentials",
-                    "formattedValue": "\"Basic «user:passwd»\""
-                  }
+                  "value": "should succeed"
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 44698,
+              "durationInNanos": 158680,
               "depth": 0,
               "parentFailed": false
             },
             {
-              "name": "yield() should return",
+              "name": "getAuthString()",
               "words": [
                 {
                   "value": "and",
                   "isIntroWord": true
                 },
                 {
-                  "value": "yield() should return"
+                  "value": "getAuthString()"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 452851,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "should return",
+              "words": [
+                {
+                  "value": "should return"
                 },
                 {
-                  "value": "user:passwd",
+                  "value": "\"Basic «user:passwd»\"",
                   "argumentInfo": {
-                    "argumentName": "credentials",
+                    "argumentName": "expected",
                     "formattedValue": "\"Basic «user:passwd»\""
                   }
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 1075276,
+              "durationInNanos": 64813,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "yield()",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "yield()"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 138565,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "should return",
+              "words": [
+                {
+                  "value": "should return"
+                },
+                {
+                  "value": "\"Basic «user:passwd»\"",
+                  "argumentInfo": {
+                    "argumentName": "expected",
+                    "formattedValue": "\"Basic «user:passwd»\""
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 866312,
               "depth": 0,
               "parentFailed": false
             }
@@ -420,10 +588,10 @@
           "explicitArguments": [],
           "derivedArguments": [],
           "status": "SUCCESS",
-          "durationInNanos": 111684306
+          "durationInNanos": 146794914
         }
       ],
-      "durationInNanos": 111684306
+      "durationInNanos": 146794914
     }
   ],
   "tagMap": {}

@@ -10,7 +10,5 @@ import java.lang.annotation.Target;
  * @author denim2x <denim2x@cyberdude.com>
  */
 @Retention( RUNTIME )
-@Target( { FIELD, METHOD, TYPE } )
-public @interface Inspection {
-    String value();
-}
+@Target( { FIELD, METHOD } )
+public @interface Mention {}

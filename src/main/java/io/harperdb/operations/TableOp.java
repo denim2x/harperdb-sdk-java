@@ -1,8 +1,8 @@
 package io.harperdb.operations;
 
-import io.harperdb.base.Payload;
 import java.util.ArrayList;
 import java.util.List;
+import io.harperdb.base.Payload;
 
 /**
  *
@@ -31,12 +31,12 @@ public final class TableOp extends TableRef implements Payload {
         return new TableOp("drop_table", table, null);
     }
 
-    public static <E> RecordsOp<E> insert(TableRef table) {
-        return new RecordsOp<>("insert", table);
+    public static  RecordsOp insert(TableRef table) {
+        return new RecordsOp("insert", table);
     }
 
-    public static <E> RecordsOp<E> update(TableRef table) {
-        return new RecordsOp<>("update", table);
+    public static  RecordsOp update(TableRef table) {
+        return new RecordsOp("update", table);
     }
 
     public static HashValues<String> delete(TableRef table) {
@@ -51,12 +51,12 @@ public final class TableOp extends TableRef implements Payload {
         return new HashValues<>("search_by_hash", table, attributes);
     }
 
-    public static SearchOp<List<String>> search(SearchDetails details) {
-        return new SearchOp<>("search_by_value", details, new ArrayList<>());
+    public static SearchOp<List<String>> search(SearchPattern pattern) {
+        return new SearchOp<>("search_by_value", pattern, new ArrayList<>());
     }
 
-    public static SearchOp<String> search(SearchDetails details, String attributes) {
-        return new SearchOp<>("search_by_value", details, attributes);
+    public static SearchOp<String> search(SearchPattern pattern, String attributes) {
+        return new SearchOp<>("search_by_value", pattern, attributes);
     }
 
 }

@@ -1,143 +1,108 @@
 package io.harperdb;
 
-import io.harperdb.base.Authorization;
-import io.harperdb.base.Connector;
-import io.harperdb.base.Opaque;
-import io.harperdb.base.Promise;
-import io.harperdb.http.Session;
+import io.harperdb.util.InvalidArgument;
+import static io.harperdb.util.Preconditions.checkNotNull;
+import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
-import java.net.http.HttpClient;
-import java.time.Duration;
+import io.harperdb.auth.Authentication;
+import io.harperdb.base.Attribute;
+import io.harperdb.util.NotSupported;
+import static io.harperdb.util.Strings.ANGLE_QUOTES;
+import static io.harperdb.util.Strings.eval;
+import static io.harperdb.util.Strings.tell;
+import io.harperdb.util.Trace;
+import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
+import java.util.function.Predicate;
+import static java.util.regex.Pattern.compile;
 
-public final class HarperDB implements Connector {
+/**
+ *
+ * @author denim2x <denim2x@cyberdude.com>
+ */
+public class HarperDB<A extends Authentication> implements Trace {
 
     public static final int PORT = 9925;
-    public static final Duration TIMEOUT = Duration.ofSeconds(10);
+    protected static final Predicate<String> PROTOCOL = compile("^https?$").asPredicate();
 
-    Endpoint<?> endpoint;
-    Authorization auth;
-    Duration timeout = TIMEOUT;
+    private final URL endpoint;
+    private final A auth;
 
-    public HarperDB() {
-        useEndpoint("localhost", PORT);
-    }
+    protected HarperDB(URL endpoint, A auth) {
+        check(endpoint);
+        this.endpoint = endpoint;
 
-    public Endpoint<?> useEndpoint(URI value) {
-        if (nonNull(value)) {
-            useEndpoint(value.getScheme(), value.getHost(), value.getPort());
+        if (isNull(auth)) {
+            info("Authentication: {0}", tell(ANGLE_QUOTES, auth));
         }
-
-        return this.endpoint;
-    }
-
-    public Endpoint<?> useEndpoint(URL value) {
-        if (nonNull(value)) {
-            useEndpoint(value.getProtocol(), value.getHost(), value.getPort());
-        }
-
-        return this.endpoint;
-    }
-
-    public Endpoint<?> useEndpoint(String value) {
-        if (nonNull(value)) {
-            try {
-                useEndpoint(new URI(value));
-            } catch (URISyntaxException ex) {
-                useEndpoint(null, ex);
-            }
-        }
-
-        return this.endpoint;
-    }
-
-    public Endpoint<?> useEndpoint(String host, int port) {
-        useEndpoint(null, host, port);
-        return this.endpoint;
-    }
-
-    @Override
-    public URI endpoint() throws IllegalStateException {
-        if (endpoint.nonValid()) {
-            throw new IllegalStateException("Provided endpoint is invalid", endpoint.cause());
-        }
-
-        return endpoint.expect(null);
-    }
-
-    public HarperDB withAuthorization(Authorization auth) {
         this.auth = auth;
-        return this;
     }
 
-    @Override
-    public Authorization authorization() {
+    public static HarperDB<?> open(URL endpoint) {
+        checkNotNull("endpoint", endpoint);
+        return new HarperDB<>(endpoint, Authentication.basic());
+    }
+
+    public static HarperDB<?> open(URI endpoint) throws IllegalArgumentException {
+        checkNotNull("endpoint", endpoint);
+        return open(endpoint.getScheme(), endpoint.getHost(), endpoint.getPort());
+    }
+
+    public static HarperDB<?> open(String endpoint) throws IllegalArgumentException {
+        checkNotNull("endpoint", endpoint);
+
+        try {
+            return open(new URL(endpoint));
+        } catch (MalformedURLException ex) {
+            throw InvalidArgument.of(ex, "endpoint");
+        }
+    }
+
+    public static HarperDB<?> open(String host, int port) throws IllegalArgumentException {
+        return open(null, host, port);
+    }
+
+    public static HarperDB<?> open(String protocol, String host, int port) throws IllegalArgumentException {
+        checkNotNull("host", host);
+
+        if (isNull(protocol)) {
+            protocol = "http";
+        }
+
+        try {
+            return open(new URL(protocol, host, port, ""));
+        } catch (MalformedURLException ex) {
+            throw InvalidArgument.using(ex, "Endpoint {0} cannot be valid", eval("{0}://{1}:{2,number,#}", protocol, host, port).using(ANGLE_QUOTES));
+        }
+    }
+
+    public final URL endpoint() {
+        return endpoint;
+    }
+
+    public final A authentication() {
         return auth;
     }
 
-    public HarperDB withTimeout(int timeout) {
-        return withTimeout(Duration.ofSeconds(timeout));
+    public Processor apply(Attribute... attrs) {
+        return new Processor(endpoint, auth).apply(attrs);
     }
 
-    public HarperDB withTimeout(Duration timeout) {
-        if (nonNull(timeout)) {
-            this.timeout = timeout;
-        }
-
-        return this;
-    }
-
-    /**
-     * Retrieves the default connection timeout.
-     *
-     * @return The current timeout isValue
-     */
     @Override
-    public Duration timeout() {
-        return timeout;
+    public String declare() {
+        return endpoint.toString();
     }
 
-    public Opaque<Session<? extends Promise<? extends Result<String>>>, ? extends Throwable>
-            open() {
-        return open(HttpClient.newBuilder());
-    }
+    protected void check(URL endpoint) {
+        Throwable cause = null;
 
-    public Opaque<Session<? extends Promise<? extends Result<String>>>, ? extends Throwable>
-            open(HttpClient.Builder http) {
-        try {
-            return Opaque.of(new SessionImpl(http.build(), this));
-        } catch (Throwable ex) {
-            return Opaque.causing(ex);
-        }
-    }
-
-    void useEndpoint(String scheme, String host, int port) {
-        try {
-            useEndpoint(new URI(nonNull(scheme) ? scheme : "http", null, host, port, null, null, null), null);
-        } catch (URISyntaxException ex) {
-            useEndpoint(null, ex);
-        }
-    }
-
-    <E extends Exception> void useEndpoint(URI value, E error) {
-        endpoint = new Endpoint<>(value, error);
-    }
-
-    public final class Endpoint<E extends Exception> extends Opaque<URI, E> {
-
-        public Endpoint(URI value, E error) {
-            super(value, error);
+        if (!PROTOCOL.test(endpoint.getProtocol())) {
+            cause = NotSupported.of("protocol");
         }
 
-        public Endpoint<E> with(String scheme) {
-            var endpoint = expect(null);
-            if (nonNull(endpoint)) {
-                useEndpoint(scheme, endpoint.getHost(), endpoint.getPort());
-            }
-
-            return this;
+        if (nonNull(cause)) {
+            throw InvalidArgument.of(cause, "endpoint");
         }
     }
 }

@@ -3,176 +3,154 @@ package io.harperdb;
 import com.tngtech.jgiven.annotation.As;
 import com.tngtech.jgiven.annotation.ScenarioState;
 import io.harperdb.ClientTest.Steps;
-import io.harperdb.base.Authorization;
 import io.harperdb.test.Describe;
 import io.harperdb.test.ScenarioTest;
 import io.harperdb.test.Stage;
 import java.net.URI;
-import static java.text.MessageFormat.format;
-import java.time.Duration;
-import static java.util.Objects.isNull;
+import java.net.URL;
 import org.testng.annotations.Test;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 
 /**
  *
  * @author denim2x <denim2x@cyberdude.com>
  */
 @Test
-public class ClientTest extends ScenarioTest<Steps> {
+class ClientTest extends ScenarioTest<Steps> {
 
-    static final URI ENDPOINT = URI.create(format("http://localhost:{0,number,#}", HarperDB.PORT));
+    static URL endpoint() throws Throwable {
+        return new URL("http://foobar:1234");
+    }
 
-    public void creating_new_HarperDB() throws Throwable {
-        given().new_instance();
-        then()
-                .endpoint(ENDPOINT)
-                .and().authorization(null)
-                .and().timeout(HarperDB.TIMEOUT);
+    public void HarperDB() throws Throwable {
+        var endpointA = endpoint();
+        let().open(endpointA)
+                .then().endpoint().returns(endpointA);
 
-        var endpointA = "http://foobar:1234";
-        when().useEndpoint().called(endpointA);
-        then().endpoint(URI.create(endpointA));
+        URL endpointB = null;
+        let().open(endpointB).fails(IllegalArgumentException.class);
 
-        String endpointB = null;
-        when().useEndpoint().called(endpointB);
-        then().endpoint(URI.create(endpointA)).comment("as previous");
-
-        var endpointC = URI.create("http://foobaz:3456");
-        when().useEndpoint().called(endpointC);
-        then().endpoint(endpointC);
+        URL endpointC = new URL("http://foobaz:3456");
+        let().open(endpointC.toURI())
+                .then().endpoint().returns(endpointC);
 
         URI endpointD = null;
-        when().useEndpoint().called(endpointD);
-        then().endpoint(endpointC).comment("as previous");
+        let().open(endpointD).fails(IllegalArgumentException.class);
 
-        var endpointE = URI.create("http://fooqux:5678");
-        when().useEndpoint().called(endpointE.getHost(), endpointE.getPort());
-        then().endpoint(endpointE);
+        URL endpointE = new URL("http://fooqux:5678");
+        let().open(endpointE.toString())
+                .then().endpoint().returns(endpointE);
 
-        when().endpoint_with().called("https");
-        then().endpoint(URI.create("https://fooqux:5678"));
+        String endpointF = null;
+        let().open(endpointF).fails(IllegalArgumentException.class);
 
-        String endpointF = "";
-        when().useEndpoint().called(endpointF).comment("not valid");
-        then().endpoint(IllegalStateException.class);
+        String endpointG = "";
+        let().open(endpointG).fails(IllegalArgumentException.class);
 
-        var authA = Authorization.basic().withUserName("user").withPassword("passwd");
-        when().withAuthorization().called(authA);
-        then().authorization(authA);
+        let().open(endpointA.getHost(), endpointA.getPort())
+                .then().endpoint().returns(endpointA);
 
-        when().withAuthorization().called(null);
-        then().authorization(null);
+        let().open(null, 1234).fails(IllegalArgumentException.class);
 
-        var timeoutA = 20;
-        when().withTimeout().called(timeoutA);
-        then().timeout(Duration.ofSeconds(timeoutA));
+        var endpointH = new URL("https://foobar:1234");
+        let().open("https", endpointH.getHost(), endpointH.getPort())
+                .then().endpoint().returns(endpointH);
 
-        var timeoutB = Duration.ofSeconds(30);
-        when().withTimeout().called(timeoutB);
-        then().timeout(timeoutB);
+        let().open(null, endpointA.getHost(), endpointA.getPort())
+                .then().endpoint().returns(endpointA);
 
-        when().withTimeout().called(null);
-        then().timeout(timeoutB).comment("as previous");
+        let().open(null, null, 1234).fails(IllegalArgumentException.class);
     }
 
-    public void producing_the_Session() throws Throwable {
-        given().new_instance().with().;
-    }
-
-    public static class Steps extends Stage<Steps> {
+    static class Steps extends Stage<Steps> {
 
         @ScenarioState
-        private HarperDB client;
+        private HarperDB instance;
 
-        @ScenarioState
-        private HarperDB.Endpoint endpoint;
-
-        public Steps new_instance() {
-            client = new HarperDB();
-            return this;
-        }
-
-        @As("endpoint()")
-        public Steps endpoint(@Describe URI expected) {
-            assertThat(client.endpoint(), isA(URI.class));
-            assertThat(client.endpoint(), equalTo(expected));
-            return this;
-        }
-
-        @As("endpoint()")
-        public Steps endpoint(@Describe Class<? extends Throwable> errorClass) {
-            Throwable error = null;
+        @As("open($)")
+        public Steps open(@Describe URL endpoint) {
             try {
-                client.endpoint();
-            } catch (Throwable ex) {
-                error = ex;
+                instance = HarperDB.open(endpoint);
+                exception = null;
+            } catch (IllegalArgumentException ex) {
+                instance = null;
+                exception = ex;
             }
 
-            assertThat(error, isA(errorClass));
+            return this;
+        }
+
+        @As("open($)")
+        public Steps open(@Describe URI endpoint) {
+            try {
+                instance = HarperDB.open(endpoint);
+                exception = null;
+            } catch (IllegalArgumentException ex) {
+                instance = null;
+                exception = ex;
+            }
+
+            return this;
+        }
+
+        @As("open($)")
+        public Steps open(@Describe String endpoint) {
+            try {
+                instance = HarperDB.open(endpoint);
+                exception = null;
+            } catch (IllegalArgumentException ex) {
+                instance = null;
+                exception = ex;
+            }
+
+            return this;
+        }
+
+        @As("open(host $, port $)")
+        public Steps open(@Describe String host, @Describe int port) {
+            try {
+                instance = HarperDB.open(host, port);
+                exception = null;
+            } catch (IllegalArgumentException ex) {
+                instance = null;
+                exception = ex;
+            }
+
+            return this;
+        }
+
+        @As("open(protocol $, host $, port $)")
+        public Steps open(@Describe String protocol, @Describe String host, @Describe int port) {
+            try {
+                instance = HarperDB.open(protocol, host, port);
+                exception = null;
+            } catch (IllegalArgumentException ex) {
+                instance = null;
+                exception = ex;
+            }
+
+            return this;
+        }
+
+        @As("endpoint()")
+        public Steps endpoint() {
+            actual = instance.endpoint();
+            exception = null;
             return this;
         }
 
         @As("authorization()")
-        public Steps authorization(@Describe Authorization expected) {
-            if (isNull(expected)) {
-                assertThat(client.authorization(), nullValue(Authorization.class));
-            } else {
-                assertThat(client.authorization(), isA(Authorization.class));
-                assertThat(client.authorization(), is(expected));
-            }
-
+        public Steps authorization() {
+            actual = instance.authorization();
+            exception = null;
             return this;
         }
 
-        @As("timeout()")
-        public Steps timeout(@Describe Duration expected) {
-            assertThat(client.timeout(), isA(Duration.class));
-            assertThat(client.timeout(), equalTo(expected));
+        @As("client()")
+        public Steps client() {
+            actual = instance.client();
+            exception = null;
             return this;
         }
 
-        @As("useEndpoint($)")
-        public Steps useEndpoint(@Describe URI endpoint) {
-            this.endpoint = client.useEndpoint(endpoint);
-            return this;
-        }
-
-        @As("useEndpoint($)")
-        public Steps useEndpoint(@Describe String endpoint) {
-            this.endpoint = client.useEndpoint(endpoint);
-            return this;
-        }
-
-        @As("useEndpoint(host $, port $)")
-        public Steps useEndpoint(@Describe String host, @Describe int port) {
-            this.endpoint = client.useEndpoint(host, port);
-            return this;
-        }
-
-        @As("endpoint.with($)")
-        public Steps endpoint_with(@Describe String scheme) {
-            endpoint.with(scheme);
-            return this;
-        }
-
-        @As("withAuthorization($)")
-        public Steps withAuthorization(@Describe Authorization auth) {
-            client.withAuthorization(auth);
-            return this;
-        }
-
-        @As("withTimeout($)")
-        public Steps withTimeout(@Describe int timeout) {
-            client.withTimeout(timeout);
-            return this;
-        }
-
-        @As("withTimeout($)")
-        public Steps withTimeout(@Describe Duration timeout) {
-            client.withTimeout(timeout);
-            return this;
-        }
     }
 }

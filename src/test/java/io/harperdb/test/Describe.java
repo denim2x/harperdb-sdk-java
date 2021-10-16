@@ -12,7 +12,6 @@ import java.lang.annotation.Target;
  */
 @Format(GenericFormatter.class)
 @Retention(RUNTIME)
-@Target({PARAMETER, ANNOTATION_TYPE, FIELD})
+@Target({PARAMETER, FIELD})
 public @interface Describe {
-    public String[] args() default {};
 }

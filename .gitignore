@@ -1,3 +1,5 @@
 .idea
 .gradle
 build
+jgiven-reports
+nb-configuration.xml
