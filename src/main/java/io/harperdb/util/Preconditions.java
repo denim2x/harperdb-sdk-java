@@ -3,7 +3,7 @@ package io.harperdb.util;
 import static io.harperdb.util.Strings.ANGLE_QUOTES;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
-import static io.harperdb.util.Strings.eval;
+import static io.harperdb.util.Strings.embed;
 
 /**
  *
@@ -13,7 +13,7 @@ public interface Preconditions {
 
     public static <T> T checkNotNull(T value) {
         if (isNull(value)) {
-            throw InvalidArgument.using("Argument was null");
+            throw InvalidArgument.as("Argument was null");
         }
 
         return value;
@@ -23,7 +23,7 @@ public interface Preconditions {
         var named = new Named(name);
 
         if (isNull(value)) {
-            throw InvalidArgument.using("Argument {0} was null", eval(named.name()).using(ANGLE_QUOTES));
+            throw InvalidArgument.as("Argument {0} was null", embed(named.name()).using(ANGLE_QUOTES));
         }
 
         return named;
@@ -47,7 +47,7 @@ public interface Preconditions {
 
         public <T> T checkNotNull(String property, T value) {
             if (isNull(value)) {
-                throw InvalidArgument.using("{0} was null", eval("{0}.{1}", name, property).using(ANGLE_QUOTES));
+                throw InvalidArgument.as("{0} was null", embed("{0}.{1}", name, property).using(ANGLE_QUOTES));
             }
 
             return value;

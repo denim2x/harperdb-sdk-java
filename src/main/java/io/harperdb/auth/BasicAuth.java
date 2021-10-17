@@ -5,7 +5,7 @@ import static java.text.MessageFormat.format;
 import java.util.Base64;
 import java.util.Base64.Encoder;
 import static java.util.Objects.nonNull;
-import io.harperdb.util.Mention;
+import io.harperdb.util.Explain;
 
 public class BasicAuth implements Authentication {
 
@@ -17,7 +17,7 @@ public class BasicAuth implements Authentication {
 
     protected BasicAuth() {}
 
-    @Mention
+    @Explain
     public String toCredentials() {
         return format("{0}:{1}", userName, password);
     }

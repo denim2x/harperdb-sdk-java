@@ -1,5 +1,6 @@
 package io.harperdb.auth;
 
+@FunctionalInterface
 public interface Authentication {
 
     String yield();

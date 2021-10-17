@@ -30,12 +30,12 @@ public interface Strings {
         return reader.lines().collect(Collectors.joining("\n"));
     }
 
-    public static Eval eval(String format, Object... values) {
+    public static Eval embed(String format, Object... values) {
         return new Eval(format, values);
     }
 
     public static <T> String tell(String format, T value) {
-        return eval(format, Strings.tell(value)).toString();
+        return embed(format, Strings.tell(value)).toString();
     }
 
     public static <T> String tell(T value) {
@@ -50,9 +50,9 @@ public interface Strings {
         var type = value.getClass();
         var methods = concat(stream(type.getDeclaredMethods()), stream(type.getMethods()))
                 .distinct()
-                .filter(m -> m.isAnnotationPresent(Mention.class) && isPublic(m.getModifiers()));
+                .filter(m -> m.isAnnotationPresent(Explain.class) && isPublic(m.getModifiers()));
 
-        var demo = methods.map(m -> {
+        var explained = methods.map(m -> {
             try {
                 return (String) m.invoke(value);
             } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
@@ -60,7 +60,7 @@ public interface Strings {
             }
         }).filter(Objects::nonNull).findFirst();
 
-        return demo.orElse(value.toString());
+        return explained.orElse(value.toString());
     }
 
     static String asType(Class<?> type) {
@@ -77,7 +77,7 @@ public interface Strings {
                 .map(Strings::asType)
                 .collect(Collectors.joining(", "));
 
-        return eval("({1}) -> {0}", ret, params).toString();
+        return embed("({1}) -> {0}", ret, params).toString();
     }
 
     public static class Eval {

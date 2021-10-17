@@ -1,16 +1,14 @@
 package io.harperdb.base;
 
-import static io.harperdb.util.Preconditions.checkNotNull;
-
 /**
  *
  * @author denim2x <denim2x@cyberdude.com>
  */
-public enum Stage {
+public enum Protocol {
     CONNECT(0x01), REQUEST(0x02);
 
     private static final int[] flags;
-    private static final Stage[] values = values();
+    private static final Protocol[] values = values();
     static {
         flags = new int[values.length];
         for (var i = 0; i < flags.length; i++) {
@@ -20,7 +18,7 @@ public enum Stage {
 
     protected int flag;
 
-    Stage(int flag) {
+    Protocol(int flag) {
         this.flag = flag;
     }
 

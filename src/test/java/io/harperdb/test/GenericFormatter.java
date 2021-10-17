@@ -4,8 +4,6 @@ import com.tngtech.jgiven.format.ArgumentFormatter;
 import static io.harperdb.util.Strings.ANGLE_QUOTES;
 import java.time.Duration;
 import static java.util.Objects.isNull;
-import static io.harperdb.util.Strings.eval;
-import io.harperdb.util.Mention;
 import static io.harperdb.util.Strings.tell;
 import static io.harperdb.util.Strings.tell;
 import static io.harperdb.util.Strings.tell;
@@ -14,6 +12,8 @@ import static io.harperdb.util.Strings.tell;
 import static io.harperdb.util.Strings.tell;
 import static io.harperdb.util.Strings.tell;
 import static io.harperdb.util.Strings.tell;
+import io.harperdb.util.Explain;
+import static io.harperdb.util.Strings.embed;
 
 /**
  *
@@ -47,11 +47,11 @@ public class GenericFormatter implements ArgumentFormatter<Object> {
             return body;
         }
 
-        if (type.isAnnotationPresent(Mention.class)) {
+        if (type.isAnnotationPresent(Explain.class)) {
             return body;
         }
 
-        return eval("{0} '{'{1}'}'", tell(type), body).using(ANGLE_QUOTES);
+        return embed("{0} '{'{1}'}'", tell(type), body).using(ANGLE_QUOTES);
 
     }
 
@@ -60,7 +60,7 @@ public class GenericFormatter implements ArgumentFormatter<Object> {
         var mins = value.toMinutesPart();
         var secs = value.toSecondsPart();
 
-        return eval("{0,number,#}:{1,number,00}:{2,number,00}", hours, mins, secs).toString();
+        return embed("{0,number,#}:{1,number,00}:{2,number,00}", hours, mins, secs).toString();
     }
 
 }

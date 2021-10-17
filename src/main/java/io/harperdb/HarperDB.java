@@ -6,22 +6,18 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import io.harperdb.auth.Authentication;
-import io.harperdb.base.Attribute;
-import io.harperdb.util.NotSupported;
 import static io.harperdb.util.Strings.ANGLE_QUOTES;
-import static io.harperdb.util.Strings.eval;
-import static io.harperdb.util.Strings.tell;
-import io.harperdb.util.Trace;
 import static java.util.Objects.isNull;
-import static java.util.Objects.nonNull;
 import java.util.function.Predicate;
 import static java.util.regex.Pattern.compile;
+import io.harperdb.util.Cause;
+import static io.harperdb.util.Strings.embed;
 
 /**
  *
  * @author denim2x <denim2x@cyberdude.com>
  */
-public class HarperDB<A extends Authentication> implements Trace {
+public class HarperDB<A extends Authentication> {
 
     public static final int PORT = 9925;
     protected static final Predicate<String> PROTOCOL = compile("^https?$").asPredicate();
@@ -30,12 +26,8 @@ public class HarperDB<A extends Authentication> implements Trace {
     private final A auth;
 
     protected HarperDB(URL endpoint, A auth) {
-        check(endpoint);
+        checkProtocol("endpoint", endpoint.getProtocol());
         this.endpoint = endpoint;
-
-        if (isNull(auth)) {
-            info("Authentication: {0}", tell(ANGLE_QUOTES, auth));
-        }
         this.auth = auth;
     }
 
@@ -72,8 +64,10 @@ public class HarperDB<A extends Authentication> implements Trace {
 
         try {
             return open(new URL(protocol, host, port, ""));
-        } catch (MalformedURLException ex) {
-            throw InvalidArgument.using(ex, "Endpoint {0} cannot be valid", eval("{0}://{1}:{2,number,#}", protocol, host, port).using(ANGLE_QUOTES));
+        } catch (MalformedURLException cause) {
+            throw InvalidArgument.as(cause,
+                    "{0} was invalid",
+                    embed("{0}://{1}:{2,number,#}", protocol, host, port).using(ANGLE_QUOTES));
         }
     }
 
@@ -85,24 +79,13 @@ public class HarperDB<A extends Authentication> implements Trace {
         return auth;
     }
 
-    public Processor apply(Attribute... attrs) {
-        return new Processor(endpoint, auth).apply(attrs);
+    public Processor processor() {
+        return new Processor(endpoint, auth);
     }
 
-    @Override
-    public String declare() {
-        return endpoint.toString();
-    }
-
-    protected void check(URL endpoint) {
-        Throwable cause = null;
-
-        if (!PROTOCOL.test(endpoint.getProtocol())) {
-            cause = NotSupported.of("protocol");
-        }
-
-        if (nonNull(cause)) {
-            throw InvalidArgument.of(cause, "endpoint");
+    protected void checkProtocol(String name, String value) {
+        if (!PROTOCOL.test(value)) {
+            throw InvalidArgument.of(Cause.by("protocol"), name);
         }
     }
 }

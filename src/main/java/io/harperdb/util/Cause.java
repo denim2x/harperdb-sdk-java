@@ -10,21 +10,23 @@ import static java.text.MessageFormat.format;
  *
  * @author denim2x <denim2x@cyberdude.com>
  */
-public interface NotSupported {
+public interface Cause {
 
-    public static Exception using(String format, Object... values) {
+    static final String NOT_SUPPORTED = "{0} not supported";
+
+    public static Exception as(String format, Object... values) {
         return new Exception(format(format, values));
     }
 
-    public static Exception using(Throwable cause, String format, Object... values) {
+    public static Exception as(Throwable cause, String format, Object... values) {
         return new Exception(format(format, values), cause);
     }
 
-    public static Exception of(String value) {
-        return using("Not supported: {0}", value);
+    public static Exception by(String value) {
+        return Cause.as(NOT_SUPPORTED, value);
     }
 
     public static Exception of(Throwable cause, String value) {
-        return using(cause, "Not supported: {0}", value);
+        return as(cause, NOT_SUPPORTED, value);
     }
 }

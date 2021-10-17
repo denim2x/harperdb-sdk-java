@@ -11,4 +11,4 @@ import java.lang.annotation.Target;
  */
 @Retention( RUNTIME )
 @Target( { FIELD, METHOD } )
-public @interface Mention {}
+public @interface Explain {}

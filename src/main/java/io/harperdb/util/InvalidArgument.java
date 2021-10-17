@@ -8,15 +8,15 @@ import static java.text.MessageFormat.format;
  */
 public interface InvalidArgument {
 
-    public static IllegalArgumentException using(String format, Object... values) {
+    public static IllegalArgumentException as(String format, Object... values) {
         return new IllegalArgumentException(format(format, values));
     }
 
-    public static IllegalArgumentException using(Throwable cause, String format, Object... values) {
+    public static IllegalArgumentException as(Throwable cause, String format, Object... values) {
         return new IllegalArgumentException(format(format, values), cause);
     }
 
     public static IllegalArgumentException of(Throwable cause, String name) {
-        return using(cause, "Invalid argument: {0}", name);
+        return InvalidArgument.as(cause, "Invalid argument: {0}", name);
     }
 }
